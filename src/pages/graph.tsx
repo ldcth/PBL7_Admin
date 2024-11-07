@@ -3,8 +3,10 @@ import { Button, Layout, Select, Input } from "antd";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { ModelApi } from "@/services/api/model.api";
 import { useRouter } from "next/router";
+import { BASE_URL } from "@/config";
 
 const { Sider, Content } = Layout;
+const baseURL = `${BASE_URL}`;
 
 const Graph: React.FC = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -27,7 +29,7 @@ const Graph: React.FC = () => {
       const response = await ModelApi.getGraphByCustomer(data);
       // setHtmlLink(baseURL + "/" + response?.data.graph);
 
-      setHtmlLink(" http://127.0.0.1:3001" + "/" + response?.data.graph);
+      setHtmlLink(baseURL + "/" + response?.data.graph);
 
       console.log(htmlLink);
     } catch (error) {
