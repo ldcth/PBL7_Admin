@@ -217,11 +217,11 @@ const Page = () => {
 
   return (
     <div className="bg-white relative z-0 flex h-screen w-full overflow-hidden">
-      <div className="relative z-20 w-[80px] h-full flex-shrink-0 overflow-x-hidden bg-token-sidebar-surface-primary">
-        <div className="bg-gray-50 h-full flex flex-col">
+      <div className="relative z-20 w-[80px] h-full flex-shrink-0 overflow-x-hidden bg-[#001529]">
+        <div className="bg-[#001529] h-full flex flex-col">
           <Button
             type="primary"
-            className="mx-4 my-4"
+            className="mx-4 my-4 text-white"
             onClick={() => router.push("/graph")}
           >
             G
@@ -229,14 +229,18 @@ const Page = () => {
         </div>
       </div>
       <div className="flex relative h-full max-w-full flex-1 flex-col overflow-hidden self-end z-1">
-        <div className="sticky top-0 z-10 flex min-h-[40px] items-center  border-b p-[10px]">
+        <div className="sticky top-0 z-10 flex min-h-[40px] items-center border-b border-gray-700 p-[10px] bg-gray-900">
           <div
             className="p-[10px] block sm:hidden z-10"
             onClick={() => {
               setShow(true);
             }}
           >
-            <Image src={MenuIcon} alt="Logo" className="w-[15px] h-[15px]" />
+            <Image
+              src={MenuIcon}
+              alt="Logo"
+              className="w-[15px] h-[15px] invert"
+            />
           </div>
           <Dropdown
             menu={{
@@ -248,10 +252,10 @@ const Page = () => {
                       onClick={() => {
                         setVersion(1);
                       }}
-                      className="h-[30px] flex flex-row items-center"
+                      className="h-[30px] flex flex-row items-center bg-gray-800 hover:bg-gray-700"
                     >
-                      <span className="ml-3 text-base font-sans text-black">
-                        LLAMA
+                      <span className="ml-3 text-base font-sans text-white">
+                        QWEN
                       </span>
                     </div>
                   ),
@@ -263,9 +267,9 @@ const Page = () => {
                       onClick={() => {
                         setVersion(2);
                       }}
-                      className="h-[30px] flex flex-row items-center"
+                      className="h-[30px] flex flex-row items-center bg-gray-800 hover:bg-gray-700"
                     >
-                      <span className="ml-3 text-base font-sans text-black">
+                      <span className="ml-3 text-base font-sans text-white">
                         BLOOMZ
                       </span>
                     </div>
@@ -278,10 +282,10 @@ const Page = () => {
                       onClick={() => {
                         setVersion(3);
                       }}
-                      className="h-[30px] flex flex-row items-center"
+                      className="h-[30px] flex flex-row items-center bg-gray-800 hover:bg-gray-700"
                     >
-                      <span className="ml-3 text-base font-sans text-black">
-                        QWEN
+                      <span className="ml-3 text-base font-sans text-white">
+                        LLAMA
                       </span>
                     </div>
                   ),
@@ -289,7 +293,7 @@ const Page = () => {
               ],
             }}
           >
-            <span className="text-2xl font-sans font-medium text-black p-3 cursor-pointer">
+            <span className="text-2xl font-sans font-medium text-white p-3 cursor-pointer">
               HistoryQuiz {title}
             </span>
           </Dropdown>
@@ -320,7 +324,7 @@ const Page = () => {
                   />
                 </div>
                 <span className="text-3xl text-black font-medium font-sans">
-                  How can I help you?
+                  Knowledge graph system
                 </span>
               </div>
             )}
