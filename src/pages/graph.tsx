@@ -83,7 +83,7 @@ const Graph: React.FC = () => {
             style={{ width: "100%", marginBottom: "16px" }}
             onClick={() => router.push("/")}
           >
-            H
+            Home
           </Button>
           <Select
             style={{ width: "100%", marginBottom: "16px" }}
@@ -92,8 +92,8 @@ const Graph: React.FC = () => {
             value={type}
             onChange={(value) => setType(value)}
             options={[
-              { value: "Q", label: "Q" },
-              { value: "L", label: "L" },
+              { value: "Q", label: "Qwen" },
+              { value: "L", label: "LLAMA" },
             ]}
           />
           <Select

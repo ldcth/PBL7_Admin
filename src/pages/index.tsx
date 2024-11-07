@@ -217,14 +217,17 @@ const Page = () => {
 
   return (
     <div className="bg-white relative z-0 flex h-screen w-full overflow-hidden">
-      <div className="relative z-20 w-[80px] h-full flex-shrink-0 overflow-x-hidden bg-[#001529]">
+      <div
+        className="relative z-20 w-[80px] h-full flex-shrink-0 overflow-x-hidden bg-[#001529]"
+        style={{ backdropFilter: "none" }}
+      >
         <div className="bg-[#001529] h-full flex flex-col">
           <Button
             type="primary"
             className="mx-4 my-4 text-white"
             onClick={() => router.push("/graph")}
           >
-            G
+            Graph
           </Button>
         </div>
       </div>

@@ -40,24 +40,22 @@ const ContentQuiz: FC<ContentQuizProps> = ({ data }) => {
 
   if (data.type === "ask") {
     return (
-      <div className="flex flex-row px-[20px] pt-[30px] items-start gap-2 w-full">
+      <div className="flex flex-row px-[20px] pt-[30px] items-start gap-2  w-full">
         <Image
           src={DefaultAvatarIcon}
           alt="Logo"
           className="w-[40px] h-[40px] rounded-full"
         />
-        <div className="flex flex-col gap-4 mt-[7px] w-full">
-          <span className="font-sans font-medium text-gray-200 text-base">
+        <div className=" flex flex-col gap-4 mt-[7px] w-full">
+          <span className="font-sans font-medium text-black text-base">
             {user?.name || "Customer"}
           </span>
           <div className="flex flex-col mt-[5px] gap-2">
-            <p className="font-sans font-semibold text-gray-200 text-xl mb-[10px]">
+            <p className="font-sans font-semibold text-black text-xl mb-[10px]">
               {data.question}
             </p>
             {data.answers.map((ans) => (
-              <p className="font-sans text-gray-300 text-base px-[20px]">
-                {ans}
-              </p>
+              <p className="font-sans text-black text-base px-[20px]">{ans}</p>
             ))}
           </div>
         </div>
@@ -88,32 +86,24 @@ const ContentQuiz: FC<ContentQuizProps> = ({ data }) => {
         setShow(false);
       }}
     >
-      <div className="rounded-full min-w-[40px] h-[40px] bg-gray-800 border border-gray-700 flex items-center justify-center">
-        <Image
-          src={SmallLogoIcon}
-          alt="Logo"
-          className="w-[20px] h-[20px] invert"
-        />
+      <div className="rounded-full min-w-[40px] h-[40px] bg-gray-200 border border-gray-200 flex items-center justify-center">
+        <Image src={SmallLogoIcon} alt="Logo" className="w-[20px] h-[20px]" />
       </div>
-      <div className="flex flex-col gap-4 mt-[7px] w-full">
-        <span className="font-sans font-medium text-gray-200 text-base">
+      <div className=" flex flex-col gap-4 mt-[7px] w-full">
+        <span className="font-sans font-medium text-black text-base">
           HistoryQuiz {title}
         </span>
         <div className="flex flex-col mt-[5px] gap-2">
-          <p className="font-sans font-semibold text-gray-200 text-xl mb-[10px]">
+          <p className="font-sans font-semibold text-black text-xl mb-[10px]">
             Answer:{" "}
             {data.correct_answer === "" ? "Not Found" : data.correct_answer}
           </p>
-          <p className="font-sans text-gray-300 text-base">
-            <span className="font-semibold text-gray-200 text-xl">
-              Explain:
-            </span>{" "}
+          <p className="font-sans text-black text-base">
+            <span className="font-semibold text-xl">Explain:</span>{" "}
             {data.explanation === "" ? "Not Found" : data.explanation}
           </p>
-          <p className="font-sans text-gray-300 text-base">
-            <span className="font-semibold text-gray-200 text-xl">
-              Reference:
-            </span>
+          <p className="font-sans text-black text-base">
+            <span className="font-semibold text-xl">Reference:</span>
             <ul>
               {data.top_k.slice(0, 5).map((ref: string, index: number) => (
                 <li key={`${ref}-${index}`}>
