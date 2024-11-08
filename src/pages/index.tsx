@@ -278,6 +278,7 @@ const Page = () => {
                         onClick={() => {
                           setVersion(2);
                         }}
+                        style={{ opacity: 0.5, pointerEvents: "none" }}
                         className="h-[30px] flex flex-row items-center"
                       >
                         <span className="ml-3 text-base font-sans">BLOOMZ</span>
@@ -291,6 +292,7 @@ const Page = () => {
                         onClick={() => {
                           setVersion(3);
                         }}
+                        style={{ opacity: 0.5, pointerEvents: "none" }}
                         className="h-[30px] flex flex-row items-center"
                       >
                         <span className="ml-3 text-base font-sans">LLAMA</span>
@@ -349,7 +351,7 @@ const Page = () => {
                   />
                 </div>
                 <span className="text-3xl text-black font-medium font-sans">
-                  Knowledge graph system
+                  Knowledge Graph System
                 </span>
               </div>
             )}

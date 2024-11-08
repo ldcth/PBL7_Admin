@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import { Button, Layout, Select, Input } from "antd";
+import { Button, Layout, Select, Input, Tooltip } from "antd";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { ModelApi } from "@/services/api/model.api";
 import { useRouter } from "next/router";
 import { BASE_URL } from "@/config";
+import toast from "react-hot-toast";
 
 const { Sider, Content } = Layout;
 const baseURL = `${BASE_URL}`;
@@ -30,10 +31,9 @@ const Graph: React.FC = () => {
       // setHtmlLink(baseURL + "/" + response?.data.graph);
 
       setHtmlLink(baseURL + "/" + response?.data.graph);
-
-      console.log(htmlLink);
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error submitting data:", error);
+      toast.error(error?.message || "There are some problem");
     }
   };
 
@@ -94,7 +94,7 @@ const Graph: React.FC = () => {
                 value={type}
                 onChange={(value) => setType(value)}
                 options={[
-                  { value: "Q", label: "Qwen" },
+                  { value: "Q", label: "QWEN" },
                   { value: "L", label: "LLAMA" },
                 ]}
               />
@@ -110,12 +110,30 @@ const Graph: React.FC = () => {
                   { value: "12", label: "12" },
                 ]}
               />
-              <Input
-                placeholder="Lessons"
-                style={{ marginBottom: "16px" }}
-                value={lessons}
-                onChange={(e) => setLessons(e.target.value)}
-              />
+              <Tooltip
+                title={
+                  <>
+                    Enter lesson numbers:
+                    <br />
+                    • Separated by commas (e.g., 1,2,3)
+                    <br />
+                    • Range of lessons (e.g., 1-3)
+                    <br />
+                    • Single number for specific lesson (e.g., 1)
+                    <br />• Grade 10 has 40 lessons
+                    <br />• Grade 11 has 24 lessons
+                    <br />• Grade 12 has 25 lessons
+                  </>
+                }
+                placement="right"
+              >
+                <Input
+                  placeholder="Lessons"
+                  style={{ marginBottom: "16px" }}
+                  value={lessons}
+                  onChange={(e) => setLessons(e.target.value)}
+                />
+              </Tooltip>
               <Button
                 type="primary"
                 style={{ width: "100%" }}
