@@ -96,23 +96,31 @@ const ContentQuiz: FC<ContentQuizProps> = ({ data }) => {
         <div className="flex flex-col mt-[5px] gap-2">
           <p className="font-sans font-semibold text-black text-xl mb-[10px]">
             Answer:{" "}
-            {data.correct_answer === "" ? "Not Found" : data.correct_answer}
+            {data.top_k.length === 0
+              ? "Câu hỏi này không nằm trong cơ sở tri thức của tôi"
+              : data.correct_answer === ""
+              ? "Not Found"
+              : data.correct_answer}
           </p>
-          <p className="font-sans text-black text-base">
-            <span className="font-semibold text-xl">Explain:</span>{" "}
-            {data.explanation === "" ? "Not Found" : data.explanation}
-          </p>
-          <p className="font-sans text-black text-base">
-            <span className="font-semibold text-xl">Reference:</span>
-            <ul>
-              {data.top_k.slice(0, 5).map((ref: string, index: number) => (
-                <li key={`${ref}-${index}`}>
-                  {index + 1}. Sách giáo khoa lịch sử lớp {ref.split("_")[0]}{" "}
-                  bài {ref.split("_")[1]}
-                </li>
-              ))}
-            </ul>
-          </p>
+          {data.top_k.length > 0 && (
+            <>
+              <p className="font-sans text-black text-base">
+                <span className="font-semibold text-xl">Explain:</span>{" "}
+                {data.explanation === "" ? "Not Found" : data.explanation}
+              </p>
+              <p className="font-sans text-black text-base">
+                <span className="font-semibold text-xl">Reference:</span>
+                <ul>
+                  {data.top_k.slice(0, 5).map((ref: string, index: number) => (
+                    <li key={`${ref}-${index}`}>
+                      {index + 1}. Sách giáo khoa lịch sử lớp{" "}
+                      {ref.split("_")[0]} bài {ref.split("_")[1]}
+                    </li>
+                  ))}
+                </ul>
+              </p>
+            </>
+          )}
         </div>
       </div>
     </div>
