@@ -83,44 +83,48 @@ const Graph: React.FC = () => {
             style={{ width: "100%", marginBottom: "16px" }}
             onClick={() => router.push("/")}
           >
-            Home
+            {collapsed ? "Q" : "Quiz"}
           </Button>
-          <Select
-            style={{ width: "100%", marginBottom: "16px" }}
-            placeholder="Select type"
-            defaultValue="L"
-            value={type}
-            onChange={(value) => setType(value)}
-            options={[
-              { value: "Q", label: "Qwen" },
-              { value: "L", label: "LLAMA" },
-            ]}
-          />
-          <Select
-            placeholder="Grade"
-            style={{ width: "100%", marginBottom: "16px" }}
-            value={grade}
-            defaultValue="10"
-            onChange={(value) => setGrade(value)}
-            options={[
-              { value: "10", label: "10" },
-              { value: "11", label: "11" },
-              { value: "12", label: "12" },
-            ]}
-          />
-          <Input
-            placeholder="Lessons"
-            style={{ marginBottom: "16px" }}
-            value={lessons}
-            onChange={(e) => setLessons(e.target.value)}
-          />
-          <Button
-            type="primary"
-            style={{ width: "100%" }}
-            onClick={handleSubmit}
-          >
-            Submit
-          </Button>
+          {!collapsed && (
+            <>
+              <Select
+                style={{ width: "100%", marginBottom: "16px" }}
+                placeholder="Select type"
+                defaultValue="L"
+                value={type}
+                onChange={(value) => setType(value)}
+                options={[
+                  { value: "Q", label: "Qwen" },
+                  { value: "L", label: "LLAMA" },
+                ]}
+              />
+              <Select
+                placeholder="Grade"
+                style={{ width: "100%", marginBottom: "16px" }}
+                value={grade}
+                defaultValue="10"
+                onChange={(value) => setGrade(value)}
+                options={[
+                  { value: "10", label: "10" },
+                  { value: "11", label: "11" },
+                  { value: "12", label: "12" },
+                ]}
+              />
+              <Input
+                placeholder="Lessons"
+                style={{ marginBottom: "16px" }}
+                value={lessons}
+                onChange={(e) => setLessons(e.target.value)}
+              />
+              <Button
+                type="primary"
+                style={{ width: "100%" }}
+                onClick={handleSubmit}
+              >
+                Submit
+              </Button>
+            </>
+          )}
         </div>
       </Sider>
 

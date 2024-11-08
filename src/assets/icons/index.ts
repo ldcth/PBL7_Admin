@@ -14,3 +14,4 @@ export { default as LogoutIcon } from "./logout-icon.png";
 export { default as SubmitIcon } from "./submit-icon.png";
 export { default as DisLikeIcon } from "./dislike-icon.png";
 export { default as MenuIcon } from "./menu-icon.png";
+export { default as BgIcon } from "./bg.png";

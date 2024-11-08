@@ -1,4 +1,4 @@
-import { DeleteIcon, SmallLogoIcon, MenuIcon } from "@/assets/icons";
+import { DeleteIcon, SmallLogoIcon, MenuIcon, BgIcon } from "@/assets/icons";
 import { ContentQuiz, SidebarButton, UserInfor } from "@/components";
 import { uppercaseLetters } from "@/constants";
 import { authSelector } from "@/redux/reducers";
@@ -221,7 +221,7 @@ const Page = () => {
 
   return (
     <div className="bg-white relative z-0 flex h-screen w-full overflow-hidden">
-      <div
+      {/* <div
         className="relative z-20 w-[80px] h-full flex-shrink-0 overflow-x-hidden bg-[#001529]"
         style={{ backdropFilter: "none" }}
       >
@@ -234,10 +234,10 @@ const Page = () => {
             Graph
           </Button>
         </div>
-      </div>
+      </div> */}
       <div className="flex relative h-full max-w-full flex-1 flex-col overflow-hidden self-end z-1">
         <div className="sticky top-0 z-10 flex min-h-[40px] items-center border-b border-gray-700 p-[10px] bg-gray-900">
-          <div
+          {/* <div
             className="p-[10px] block sm:hidden z-10"
             onClick={() => {
               setShow(true);
@@ -248,66 +248,84 @@ const Page = () => {
               alt="Logo"
               className="w-[15px] h-[15px] invert"
             />
+          </div> */}
+          <span className="text-lg font-sans font-medium text-white cursor-pointer">
+            {/* HistoryQuiz */}
+            HISTORYQUIZ
+          </span>
+
+          <div className="flex-1 flex justify-center relative">
+            <Dropdown
+              menu={{
+                items: [
+                  {
+                    key: "1",
+                    label: (
+                      <div
+                        onClick={() => {
+                          setVersion(1);
+                        }}
+                        className="h-[30px] flex flex-row items-center w-[120px]"
+                      >
+                        <span className="ml-3 text-base font-sans">QWEN</span>
+                      </div>
+                    ),
+                  },
+                  {
+                    key: "2",
+                    label: (
+                      <div
+                        onClick={() => {
+                          setVersion(2);
+                        }}
+                        className="h-[30px] flex flex-row items-center"
+                      >
+                        <span className="ml-3 text-base font-sans">BLOOMZ</span>
+                      </div>
+                    ),
+                  },
+                  {
+                    key: "3",
+                    label: (
+                      <div
+                        onClick={() => {
+                          setVersion(3);
+                        }}
+                        className="h-[30px] flex flex-row items-center"
+                      >
+                        <span className="ml-3 text-base font-sans">LLAMA</span>
+                      </div>
+                    ),
+                  },
+                ],
+              }}
+              placement="bottomCenter"
+              dropdownRender={(menu) => (
+                <div className="bg-white rounded-md shadow-lg w-[120px]">
+                  {menu}
+                </div>
+              )}
+              align={{ offset: [0, 0] }}
+            >
+              <span className="mr-12 text-xl font-sans font-medium text-white p-3 cursor-pointer w-[120px] text-center">
+                {title}
+              </span>
+            </Dropdown>
           </div>
-          <Dropdown
-            menu={{
-              items: [
-                {
-                  key: "1",
-                  label: (
-                    <div
-                      onClick={() => {
-                        setVersion(1);
-                      }}
-                      className="h-[30px] flex flex-row items-center bg-gray-800 hover:bg-gray-700"
-                    >
-                      <span className="ml-3 text-base font-sans text-white">
-                        QWEN
-                      </span>
-                    </div>
-                  ),
-                },
-                {
-                  key: "2",
-                  label: (
-                    <div
-                      onClick={() => {
-                        setVersion(2);
-                      }}
-                      className="h-[30px] flex flex-row items-center bg-gray-800 hover:bg-gray-700"
-                    >
-                      <span className="ml-3 text-base font-sans text-white">
-                        BLOOMZ
-                      </span>
-                    </div>
-                  ),
-                },
-                {
-                  key: "3",
-                  label: (
-                    <div
-                      onClick={() => {
-                        setVersion(3);
-                      }}
-                      className="h-[30px] flex flex-row items-center bg-gray-800 hover:bg-gray-700"
-                    >
-                      <span className="ml-3 text-base font-sans text-white">
-                        LLAMA
-                      </span>
-                    </div>
-                  ),
-                },
-              ],
-            }}
-          >
-            <span className="text-2xl font-sans font-medium text-white p-3 cursor-pointer">
-              HistoryQuiz {title}
-            </span>
-          </Dropdown>
+          <div className="ml-auto">
+            <Button
+              type="default"
+              className="px-5 font-sans"
+              onClick={() => router.push("/graph")}
+            >
+              Graph
+            </Button>
+          </div>
         </div>
         <div
-          className="overflow-y-auto h-full w-full flex-1 overflow-hidden items-center flex flex-col"
+          className="overflow-y-auto h-full w-full flex-1 overflow-hidden items-center flex flex-col bg-cover bg-center h-screen"
           ref={messageContainerRef}
+          style={{ backgroundImage: `url(${BgIcon.src})` }}
           onClick={() => {
             setShow(false);
           }}
@@ -405,8 +423,8 @@ const Page = () => {
                 }}
               />
               <Button
-                className="min-h-[48px] rounded-[12px] w-[40%] max-w-[200px]"
-                type="primary"
+                className="!bg-gray-700 min-h-[48px] rounded-[12px] w-[40%] max-w-[200px] !important-[&:hover]:bg-gray-300 !important-[&:focus]:bg-gray-300 !important-[&:active]:bg-gray-300"
+                type="default"
                 loading={loading}
                 disabled={loading}
                 onClick={handleGetAnswer}
