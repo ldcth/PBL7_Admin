@@ -4,7 +4,7 @@ import { uppercaseLetters } from "@/constants";
 import { authSelector } from "@/redux/reducers";
 import { ModelApi } from "@/services";
 import { IContent, IConversation } from "@/types";
-import { Avatar, Button, Dropdown, Input, List, Skeleton } from "antd";
+import { Avatar, Button, Dropdown, Input, List, Skeleton, Select } from "antd";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React, {
@@ -31,6 +31,7 @@ const Page = () => {
   const [loading, setLoading] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [version, setVersion] = useState(1);
+  const [refType, setRefType] = useState<string>("L");
 
   const [currentConversation, setCurrentConversation] =
     useState<IConversation>();
@@ -127,6 +128,7 @@ const Page = () => {
             updatedAt: "Wed, 17 Apr 2024 08:46:54 GMT",
             top_k: [],
             version: version,
+            refType: refType,
           },
         ]);
         let res: any;
@@ -136,6 +138,7 @@ const Page = () => {
             question: question.trim(),
             conversationId: conversationId,
             version: version,
+            refType: refType,
           });
           if (!currentConversation) {
             try {
@@ -156,6 +159,7 @@ const Page = () => {
             question: question.trim(),
             conversationId: conversationId,
             version: version,
+            refType: refType,
           });
         }
         setQuestions("");
@@ -187,7 +191,7 @@ const Page = () => {
     } finally {
       setLoading(false);
     }
-  }, [answers, question, currentConversation, contents, version]);
+  }, [answers, question, currentConversation, contents, version, refType]);
 
   useEffect(() => {
     if (messageContainerRef.current) {
@@ -374,27 +378,32 @@ const Page = () => {
                         })
                       );
                     }}
-                    suffix={
-                      <div
-                        className="cursor-pointer"
-                        onClick={() => {
-                          deleteAnswers(index);
-                        }}
-                      >
-                        <Image src={DeleteIcon} alt="Submit" width={20} />
-                      </div>
-                    }
+                    // suffix={
+                    //   <div
+                    //     className="cursor-pointer"
+                    //     onClick={() => {
+                    //       deleteAnswers(index);
+                    //     }}
+                    //   >
+                    //     <Image src={DeleteIcon} alt="Submit" width={20} />
+                    //   </div>
+                    // }
                   />
                 </div>
               ))}
             </div>
             <div className="w-full flex flex-row justify-end gap-5">
-              <div
-                className="w-[40%] max-w-[200px] min-h-[48px] text-black border border-gray-600 rounded-xl bg-white flex items-center justify-center cursor-pointer hover:border-blue-400 hover:text-blue-400"
-                onClick={addNewAnswers}
-              >
-                <span className="font-sans text-base font-medium">Add</span>
-              </div>
+              <Select
+                className="w-[40%] max-w-[200px] min-h-[48px]"
+                value={refType}
+                options={[
+                  { value: "Q", label: "Reference by QWEN" },
+                  { value: "L", label: "Reference by LLAMA" },
+                ]}
+                onChange={(value: any) => {
+                  setRefType(value);
+                }}
+              />
               <Button
                 className="min-h-[48px] rounded-[12px] w-[40%] max-w-[200px]"
                 type="primary"

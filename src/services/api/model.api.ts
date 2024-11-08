@@ -6,6 +6,7 @@ type QuestionType = {
   answers: string[];
   conversationId: string;
   version: number;
+  refType: string;
 };
 
 const getAnswerByUser = (data: QuestionType) => {
